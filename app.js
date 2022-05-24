@@ -11,7 +11,7 @@ const request = https.request(options, response => {
 	console.log(`statusCode: ${response.statusCode}`);
 
 	response.on('data', d => {
-		process.stout.write(d);
+		process.stdout.write(d);
 	});
 });
 
