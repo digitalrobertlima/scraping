@@ -1,11 +1,22 @@
-const http = require('http');
-  
-let options = {
-	host: 'www.google.com.br',
+const https = require('https');
+
+const options = {
+	hostname: 'www.google.com.br',
+	port: 443,
 	path: '/',
-	method: 'GET'
+	method: 'GET',
 };
 
-http.request(options, (response) => {
-	console.log(`STATUS: ${response.statusCode}`);
-}).end();
+const request = https.request(options, response => {
+	console.log(`statusCode: ${response.statusCode}`);
+
+	response.on('data', d => {
+		process.stout.write(d);
+	});
+});
+
+request.on('error', error => {
+	console.error(error);
+});
+
+request.end();
