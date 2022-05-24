@@ -1,7 +1,16 @@
-const request = require('request');
+const request = require('http');
 
-request('https://blaze.com/pt/games/crash', function (error, response, body) {
-	console.error('error:', error);
-	console.log('statusCode:', response && response.statusCode);
-	console.log('body:', body);
+const server = http.createServer((req, res) => {
+
+	if(req.url == '/') {
+
+		res.write("<h1>This is the server!<h1>");
+		res.statusCode = 200;
+
+		res.end();
+	}
+});
+
+server.listen((3000), () => {
+	console.log('Server is Running...');
 });
