@@ -1,16 +1,11 @@
 const http = require('http');
+  
+let options = {
+	host: 'www.google.com.br',
+	path: '/',
+	method: 'GET'
+};
 
-const server = http.createServer((req, res) => {
-
-	if(req.url == '/') {
-
-		res.write("<h1>This is the server!<h1>");
-		res.statusCode = 200;
-
-		res.end();
-	}
-});
-
-server.listen((3000), () => {
-	console.log('Server is Running...');
-});
+http.request(options, (response) => {
+	console.log(`STATUS: ${response.statusCode}`);
+}).end();
